@@ -1,11 +1,10 @@
 {
-  
   "origin": [
     "wake up in your #adjective# #place#. #verb# your #noun# #adverb#. #move# to your #place#."
-    
+
   ],
   "place": [
- 
+
     "cottage", 
     "apartment", 
     "school bus", 
@@ -29,7 +28,7 @@
     "community pool",
     "friend's basement",
     "community garden"
-    
+
 
       ],
   "adjective": [
@@ -60,8 +59,8 @@
     "modern",
     "glowing",
     "glamorous"
-    
-  
+
+
   ],
   "verb": [
     "pet", 
@@ -82,7 +81,7 @@
     "visit",
     "share",
     "email",
- 
+
     "write",
     "rearrange",
     "deny",
@@ -115,15 +114,15 @@
     "wrestle with",
     "restore",
     "hide from"
-    
 
- 
-    
+
+
+
   ],
   "move": [
     "jump in", 
     "run", 
-   
+
     "drive", 
     "swim",
     "walk",
@@ -148,11 +147,11 @@
     "climb",
     "sneak",
     "march"
-    
-    
 
-  
-   
+
+
+
+
 
   ],
   "noun": [
@@ -180,7 +179,7 @@
     "text",
     "spouse",
     "twin",
-    "roomate",
+    "roommate",
     "enemy",
     "colonizer",
     "television",
@@ -199,9 +198,9 @@
     "dog",
 "sexuality",
     "hope"
-    
- 
-    
+
+
+
 
 
   ],
@@ -222,7 +221,7 @@
     "obsessively",
     "religiously",
     "secretly",
-    "hynotically",
+    "hypnotically",
     "internally",
     "thoughtlessly",
     "loudly",
@@ -237,18 +236,18 @@
     "shamelessly",
     "shamefully",
     "punctually",
-    "agressively",
+    "aggressively",
     "ethically",
-    "adaquately",
+    "adequately",
     "exclusively",
     "soulfully",
     "notoriously",
-    "mischeviously",
+    "mischievously",
     "deliciously",
     "problematically",
     "disastrously"
-    
+
     ]
-  
-    
+
+
 }

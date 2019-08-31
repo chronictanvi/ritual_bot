@@ -557,8 +557,13 @@
      "starve",
      "worry",
      "write",
-     "vent"
-     
+     "vent",
+     "obsess", 
+     "isolate yourself",
+     "hide",
+     "write",
+     "work"
+    
      ],
    "noObjVerb2": [
     "cry",
@@ -574,7 +579,9 @@
      "relax",
      "forget",
      "calm down",
-     "blush"
+     "blush",
+     "confess"
+     
      ],
   "are": [
     "you are not yet", 
@@ -585,6 +592,7 @@
     "your eyes look",
     "you want to stop feeling",
     "you are trying to be"
+   
     
     
     ]
@@ -592,3 +600,10 @@
 }
 
 
+
+
+
+
+
+
+ 

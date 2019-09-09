@@ -1,20 +1,11 @@
+#!/usr/bin/python
 # printer setup
-import board
-import busio
+from Adafruit_Thermal import *
 
-import adafruit_gps
-
-import serial
-uart = serial.Serial("/dev/serial0", baudrate=19200, timeout=3000)
-# uart = busio.UART(RX, baudrate=19200, timeout=3000)
-
-import adafruit_thermal_printer
-ThermalPrinter = adafruit_thermal_printer.get_printer_class(2.69)
-
-printer = ThermalPrinter(uart, auto_warm_up=False)
-printer.warm_up(12)
-printer.print("Some bullshit to get rid of the x(J crap?")
-printer.feed(2)
+# ThermalPrinter = adafruit_thermal_printer.get_printer_class(2.69)
+printer = Adafruit_Thermal("/dev/serial0", 19200, timeout=5)
+# printer = ThermalPrinter(uart, auto_warm_up=False)
+# printer.warm_up(12)
 
 import random
 
@@ -33,18 +24,37 @@ adverbs = ['adequately', 'aggressively', 'automatically', 'begrudgingly', 'caref
 
 # wake up in your (adjective) (place). (verb) your (noun) (adverb). (moveVerb) to your (place).
 # print
-line1 = (f"wake up in your {random.choice(adjectives)} {random.choice(places)}.")
-line2 = (f"{random.choice(verbs)} your {random.choice(nouns)} {random.choice(adverbs)}.")
-line3 = (f"{random.choice(moveVerbs)} to your {random.choice(places)}.")
+line1 = ("wake up in your " + random.choice(adjectives) + " " + random.choice(places) + ".")
+line2 = (random.choice(verbs) + " your " + random.choice(nouns) + " " + random.choice(adverbs) + ".")
+line3 = (random.choice(moveVerbs) + " to your " + random.choice(places) + ".")
 
-print(line1)
-printer.print(line1)
-printer.feed(2)
+printer.boldOn()
+printer.setSize('L')
 
-print(line2)
-printer.print(line2)
-printer.feed(2)
+testLine = "rearrange your government thoughtlessly."
+splitat = 15
+splitat2 = 11
+#if(len(testLine) >= 16 && )
+l, r = testLine[:splitat], testLine[splitat:]
+print l, r
+r1, r2 = r[:splitat2], r[splitat2:]
+print r1, r2
+printer.write(l + "\n" + r1 + "\n" + r2)
+printer.feed(4)
 
-print(line3)
-printer.print(line3)
-printer.feed(2)
+#print(line1)
+#print len(line1)
+#printer.write(line1)
+#printer.feed(4)
+
+#print(line2)
+#print len(line2)
+#printer.write(line2)
+#printer.feed(4)
+
+#print(line3)
+#print len(line3)
+#printer.write(line3)
+#printer.feed(4)
+
+printer.boldOff()

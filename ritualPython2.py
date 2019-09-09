@@ -9,6 +9,28 @@ printer = Adafruit_Thermal("/dev/serial0", 19200, timeout=5)
 
 import random
 
+# variables
+lineSpacer = True
+lineWidth = 16
+
+def space_text(string):
+    if(len(string) >= 16 and string[16] != " "):
+        print(string[16])
+        index = string.rfind(" ", 0, 16)
+        string = string[:index] + "\n" + string[(index+1):]
+        if(len(string) >= 32):
+            if(string[32] != " "):
+                print(string[32])
+                index = string.rfind(" ", 16, 32)
+                string = string[:index] + "\n" + string[(index+1):]
+            else:
+                return string
+        else:
+            return string
+        return string
+    else:
+        return string
+
 places = ['apartment', 'bathroom', 'cabin', 'cell', 'community garden', 'community pool', 'condo', 'cottage', 'ditch', 'dream', 'environment', 'fish tank', 'friend\'s basement', 'grave', 'house', 'local grocery store', 'local library', 'local park', 'river', 'roof', 'school bus', 'womb', 'workplace']
 
 adjectives = ['charming', 'chilly', 'conflicted', 'damp', 'dusty', 'frivolous', 'glamorous', 'glowing', 'gruesome', 'languid', 'lovely', 'medium', 'messy', 'modern', 'orange', 'ripe', 'rural', 'sad', 'silly', 'sparkly', 'suspicious', 'tasty', 'ugly', 'uncaring', 'underdeveloped', 'unfortunate', 'warm']
@@ -31,15 +53,20 @@ line3 = (random.choice(moveVerbs) + " to your " + random.choice(places) + ".")
 printer.boldOn()
 printer.setSize('L')
 
-testLine = "rearrange your government thoughtlessly."
-splitat = 15
-splitat2 = 11
-#if(len(testLine) >= 16 && )
-l, r = testLine[:splitat], testLine[splitat:]
-print l, r
-r1, r2 = r[:splitat2], r[splitat2:]
-print r1, r2
-printer.write(l + "\n" + r1 + "\n" + r2)
+#testLine = "rearrange your government thoughtlessly."
+
+#print(space_text(testLine))
+
+print(space_text(line1))
+printer.write(space_text(line1))
+printer.feed(4)
+
+print(space_text(line2))
+printer.write(space_text(line2))
+printer.feed(4)
+
+print(space_text(line3))
+printer.write(space_text(line3))
 printer.feed(4)
 
 #print(line1)

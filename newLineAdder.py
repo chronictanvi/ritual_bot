@@ -1,6 +1,9 @@
 import random
 
+lineWidth = 16
+
 def space_text(string):
+    print(len(string))
     if(len(string) >= 16 and string[16] != " "):
         index = string.rfind(" ", 0, 16)
         string = string[:index] + "\n" + string[(index+1):]
@@ -10,6 +13,19 @@ def space_text(string):
         return string
     else:
         return string
+
+def break_text(string):
+    print(len(string))
+    if(len(string) >= 16):
+        index = string.rfind(" ", 0, 16)
+        #string = string[:index] + "\n" + string[(index+1):]
+        string1, string2 = string[:index], string[index+1:]
+        print(len(string1))
+        print(string1)
+        break_text(string2)
+    else:
+        print(string)
+        #printer.write(l + "\n" + r1 + "\n" + r2)
 
 places = ['apartment', 'bathroom', 'cabin', 'cell', 'community garden', 'community pool', 'condo', 'cottage', 'ditch', 'dream', 'environment', 'fish tank', 'friend\'s basement', 'grave', 'house', 'local grocery store', 'local library', 'local park', 'river', 'roof', 'school bus', 'womb', 'workplace']
 
@@ -31,9 +47,12 @@ line2 = (f"{random.choice(verbs)} your {random.choice(nouns)} {random.choice(adv
 line3 = (f"{random.choice(moveVerbs)} to your {random.choice(places)}.")
 
 testLine = "rearrange your government thoughtlessly."
+testLine2 = "wake up in your charming local grocery store."
+testLine3 = "wake up in your uncaring workplace."
+testLine4 = "wake up in your ugly fish tank."
 
-print(space_text(testLine))
+#break_text(testLine4)
 
-print(space_text(line1))
-print(space_text(line2))
-print(space_text(line3))
+break_text(line1)
+break_text(line2)
+break_text(line3)

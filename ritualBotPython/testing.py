@@ -49,8 +49,8 @@ printer.setLineHeight() # Reset to default
 printer.justify('L')
 
 # Print the 75x75 pixel logo in adalogo.py
-# import gfx.adalogo as adalogo
-# printer.printBitmap(adalogo.width, adalogo.height, adalogo.data)
+import gfx.adalogo as adalogo
+printer.printBitmap(adalogo.width, adalogo.height, adalogo.data)
 
 # Print the 135x135 pixel QR code in adaqrcode.py
 # import gfx.adaqrcode as adaqrcode

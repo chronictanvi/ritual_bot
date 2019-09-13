@@ -7,8 +7,11 @@ from secrets import secrets
 from Adafruit_IO import Client
 ADAFRUIT_IO_USERNAME = secrets.get("ADAFRUIT_IO_USERNAME")
 ADAFRUIT_IO_KEY = secrets.get("ADAFRUIT_IO_KEY")
+print("Establishing Adafruit IO client...")
 aio = Client(ADAFRUIT_IO_USERNAME, ADAFRUIT_IO_KEY)
+print("...done.")
 
+print("Getting word data from Adafruit IO...")
 # Get an array of all data from feed 'Test'
 adjectivesData = aio.data('ritualbot.adjectives')
 placesData = aio.data('ritualbot.placewords')
@@ -16,7 +19,9 @@ verbsData = aio.data('ritualbot.verbs')
 nounsData = aio.data('ritualbot.nouns')
 adverbsData = aio.data('ritualbot.adverbs')
 movementVerbsData = aio.data('ritualbot.movementverbs')
+print("...done.")
 
+print("Appending word data to arrays...")
 # Print out all the results.
 adjectives = []
 for d in adjectivesData:
@@ -47,6 +52,7 @@ moveVerbs = []
 for d in movementVerbsData:
     #print('Data value: {0}'.format(d.value))
     moveVerbs.append(d.value)
+print("...done.")
 
 lineWidth = 16
 

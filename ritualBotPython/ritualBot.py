@@ -1,3 +1,6 @@
+# welcome to ritualBot.
+# wake up in your (adjective) (place). (verb) your (noun) (adverb). (moveVerb) to your (place).
+
 # Printer setup
 import serial
 uart = serial.Serial("/dev/serial0", baudrate=19200, timeout=3000)
@@ -8,6 +11,50 @@ printer = ThermalPrinter(uart, auto_warm_up=False)
 printer.warm_up(12)
 
 import random
+
+# User Settings
+lineWidth = 16 # this should be set according to font size. Suggested 32 for small, 16 for large
+printer.size = adafruit_thermal_printer.SIZE_LARGE # can be SMALL, MEDIUM, or LARGE
+#printer.bold = False # you want bold text? you got bold text.
+
+def break_text(string):
+    print(len(string))
+    if(len(string) >= lineWidth):
+        index = string.rfind(" ", 0, lineWidth)
+        #string = string[:index] + "\n" + string[(index+1):]
+        string1, string2 = string[:index], string[index+1:]
+        print(len(string1))
+        print(string1)
+        printer.print(string1)
+        break_text(string2)
+    else:
+        print(string)
+        printer.print(string)
+        #printer.write(l + "\n" + r1 + "\n" + r2)
+
+# Rasberry Pi GPIO setup
+import RPi.GPIO as GPIO # Import RPi GPIO library
+
+def button_callback(channel):
+    print("Button was pushed!")
+    # if (time since last button pressed) >= 10 seconds?
+    line1 = (f"wake up in your {random.choice(adjectives)} {random.choice(places)}.")
+    line2 = (f"{random.choice(verbs)} your {random.choice(nouns)} {random.choice(adverbs)}.")
+    line3 = (f"{random.choice(moveVerbs)} to your {random.choice(places)}.")
+    print("Lines randomized...")
+    break_text(line1)
+    printer.feed(2)
+    break_text(line2)
+    printer.feed(2)
+    break_text(line3)
+    printer.feed(4)
+    print("Ritual printed!")
+
+GPIO.setwarnings(False)
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(10, GPIO.IN, pull_up_down=GPIO.PUD_DOWN) # Set pin 10 as input 10, and initial value low
+
+GPIO.add_event_detect(10, GPIO.RISING, callback=button_callback) # Set up event on pin 10 rising edge
 
 # seeeeeecrets
 from secrets import secrets
@@ -62,35 +109,10 @@ for d in movementVerbsData:
     #print('Data value: {0}'.format(d.value))
     moveVerbs.append(d.value)
 print("...done.")
+print("Ready!")
 
-# User Settings
-lineWidth = 16 # this should be set according to font size. Suggested 32 for small, 16 for large
-printer.size = adafruit_thermal_printer.SIZE_LARGE # can be SMALL, MEDIUM, or LARGE
-#printer.bold = False # you want bold text? you got bold text.
+printSuccess = False
 
-def break_text(string):
-    print(len(string))
-    if(len(string) >= lineWidth):
-        index = string.rfind(" ", 0, lineWidth)
-        #string = string[:index] + "\n" + string[(index+1):]
-        string1, string2 = string[:index], string[index+1:]
-        print(len(string1))
-        print(string1)
-        printer.print(string1)
-        break_text(string2)
-    else:
-        print(string)
-        printer.print(string)
-        #printer.write(l + "\n" + r1 + "\n" + r2)
-
-# wake up in your (adjective) (place). (verb) your (noun) (adverb). (moveVerb) to your (place).
-line1 = (f"wake up in your {random.choice(adjectives)} {random.choice(places)}.")
-line2 = (f"{random.choice(verbs)} your {random.choice(nouns)} {random.choice(adverbs)}.")
-line3 = (f"{random.choice(moveVerbs)} to your {random.choice(places)}.")
-
-break_text(line1)
-printer.feed(2)
-break_text(line2)
-printer.feed(2)
-break_text(line3)
-printer.feed(4)
+while True:
+    if (printSuccess == True):
+        print("Yay?")

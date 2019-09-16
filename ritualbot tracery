@@ -182,7 +182,7 @@
 "concentrated",
 "succeeded",
 "prosecuted",
-"fighted",
+"fought",
 "forgot",
 "forced",
 "cleared",
@@ -190,7 +190,7 @@
 "concentrated",
 "boiled",
 
-"burried",
+"buried",
 "cheated",
 "described",
 "developed",
@@ -211,7 +211,7 @@
 "memorized",
 "managed",
 "murdered",
-"multiplyed",
+"multiplied",
 "nailed",
 "obeyed",
 "noticed",
@@ -268,7 +268,7 @@
 
   "ate",
 
- "founnd",
+ "found",
 "forgot",
  "fed",
 
@@ -276,7 +276,7 @@
 
   "gambled",
   "hid from",
-    "heared",
+    "heard",
 
     "ignored",
 "slapped",
@@ -344,7 +344,8 @@
     "yearned for",
     "argued with",
     "informed",
-    "researched"
+    "researched",
+    "hid"
     
 
 

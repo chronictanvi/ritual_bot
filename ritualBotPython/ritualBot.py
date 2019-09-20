@@ -85,7 +85,7 @@ class RitualPrinter:
         print("Button was pushed!")
         #if (time since last button pressed) >= 10 seconds?
         if (now - self.last_print > self.print_interval_seconds):
-            generate_ritual()
+            self.generate_ritual()
         else:
             print("It's not time yet! Be patient. Don't make our printer sad :(")
 
@@ -204,6 +204,8 @@ print("Getting word data...")
 adjectivesData = aio.data('ritualbot.adjectives')
 placesData = aio.data('ritualbot.placewords')
 verbsData = aio.data('ritualbot.verbs')
+pastVerbsData = aio.data('ritualbot.pastverbs')
+occurrencesData = aio.data('ritualbot.occurrences')
 nounsData = aio.data('ritualbot.nouns')
 adverbsData = aio.data('ritualbot.adverbs')
 movementVerbsData = aio.data('ritualbot.movementverbs')
@@ -225,6 +227,16 @@ verbs = []
 for d in verbsData:
     #print('Data value: {0}'.format(d.value))
     verbs.append(d.value)
+
+pastVerbs = []
+for d in pastVerbsData:
+    #print('Data value: {0}'.format(d.value))
+    pastVerbs.append(d.value)
+
+occurrences = []
+for d in occurrencesData:
+    #print('Data value: {0}'.format(d.value))
+    occurrences.append(d.value)
 
 nouns = []
 for d in nounsData:

@@ -85,10 +85,21 @@ class RitualPrinter:
         print("Button was pushed!")
         #if (time since last button pressed) >= 10 seconds?
         if (now - self.last_print > self.print_interval_seconds):
+            generate_ritual()
+        else:
+            print("It's not time yet! Be patient. Don't make our printer sad :(")
+
+        self.last_print = now
+
+    def generate_ritual(self):
+        origin = random.randint(1,3)
+        print("Origin {} selected.".format(origin))
+        if(origin == 1):
             line1 = (f"wake up in your {random.choice(adjectives)} {random.choice(places)}.")
             line2 = (f"{random.choice(verbs)} your {random.choice(nouns)} {random.choice(adverbs)}.")
             line3 = (f"{random.choice(moveVerbs)} to your {random.choice(places)}.")
             print("Lines randomized...")
+
             self.break_text(line1)
             printer.feed(2)
             self.break_text(line2)
@@ -103,10 +114,45 @@ class RitualPrinter:
             aio.send(counter.key, self.printCount)
             ritualComplete = line1 + " " + line2 + " " + line3
             aio.send(monitor.key, ritualComplete)
-        else:
-            print("It's not time yet! Be patient. Don't make our printer sad :(")
+        elif(origin == 2):
+            line1 = (f"you are {random.choice(adjectives)} again.")
+            line2 = (f"{random.choice(adverbs)}, {random.choice(verbs)} your {random.choice(adjectives)} self and {random.choice(verbs)} from the {random.choice(nouns)}.")
+            line3 = (f"bearing {random.choice(nouns)} of {random.choice(nouns)} on which a {random.choice(nouns)} and a {random.choice(nouns)} {random.choice(verbs)} {random.choice(adverbs)}.")
+            print("Lines randomized...")
 
-        self.last_print = now
+            self.break_text(line1)
+            printer.feed(2)
+            self.break_text(line2)
+            printer.feed(2)
+            self.break_text(line3)
+            printer.feed(4)
+            print("Ritual printed!")
+
+            self.printCount += 1
+            print("This is print {}".format(self.printCount))
+            aio.send(monitor.key, "Someone printed a ritual!")
+            aio.send(counter.key, self.printCount)
+            ritualComplete = line1 + " " + line2 + " " + line3
+            aio.send(monitor.key, ritualComplete)
+        elif(origin == 3):
+            line1 = (f"do you remember the first time you {random.choice(pastVerbs)} your {random.choice(nouns)}?")
+            line2 = (f"if only you could {random.choice(verbs)} {random.choice(occurrences)}, you might {random.choice(verbs)} something for the {random.choice(nouns)}.")
+            print("Lines randomized...")
+
+            self.break_text(line1)
+            printer.feed(2)
+            self.break_text(line2)
+            printer.feed(4)
+            print("Ritual printed!")
+
+            self.printCount += 1
+            print("This is print {}".format(self.printCount))
+            aio.send(monitor.key, "Someone printed a ritual!")
+            aio.send(counter.key, self.printCount)
+            ritualComplete = line1 + " " + line2
+            aio.send(monitor.key, ritualComplete)
+        else:
+            print("Dunno what happened dude my bad")
 
     def publish(self, string):
         now = time.time()
